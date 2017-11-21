@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace guiDashboard
 {
     /// <summary>
@@ -23,6 +24,11 @@ namespace guiDashboard
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hallo Welt");
         }
     }
 }
