@@ -32,6 +32,8 @@ namespace sqLiteTest
             //command.CommandText = @"INSERT INTO Track(id,startpoint,destination,durationinmin,trackdate,starttime,endtime) VALUES (1,'Zweibrücken, Amerikastraße 1','Kaiserslautern, Kammgarn',55,'13.11.2017','09:06','10:01');";
             //command.ExecuteNonQuery();
 
+            //Git test von lappi
+
             command.CommandText = @"Select * from Track";
             SQLiteDataReader sdr = command.ExecuteReader();
 
