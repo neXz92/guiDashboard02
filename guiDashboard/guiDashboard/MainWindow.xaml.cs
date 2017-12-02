@@ -26,7 +26,7 @@ namespace guiDashboard
         {
             InitializeComponent();
 
-            //DBManager.testoutput();
+            DBManager.testoutput();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
