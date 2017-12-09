@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:guiDashboard"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid>  
         <Button x:Name="button" Content="Button" Click="button_Click" HorizontalAlignment="Left" Margin="219,127,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
