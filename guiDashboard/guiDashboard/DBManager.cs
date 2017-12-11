@@ -19,24 +19,89 @@ namespace sqLite
 
         public static void testoutput()
         {
-            //SQLiteConnection conn = new SQLiteConnection(@"Data Source=Data Source=C:\Users\Kevin\Desktop\consumption_monitoring.db;Version=3;New=True;Compress=True;");
-            //conn.Open();
+            SQLiteConnection conn = new SQLiteConnection(@"Data Source=C:\Users\Kevin\Desktop\WS_1718\GUI\GUI Projekt Doks\Datenbank\consumption_monitoring.db;Version=3;New=True;Compress=True;");
+            conn.Open();
 
-            //var command = conn.CreateCommand();
+            var command = conn.CreateCommand();
 
-            //command.CommandText = @"Select * from Track";
+            command.CommandText = @"Select * from Track";
 
-            //SQLiteDataReader sdr = command.ExecuteReader();
+            SQLiteDataReader sdr = command.ExecuteReader();
 
-            //while (sdr.Read())
-            //{
-            //    Console.WriteLine(sdr.GetString(1) + " " + sdr.GetString(2));
-            //}
-            //sdr.Close();
+            while (sdr.Read())
+            {
+                Console.WriteLine(sdr.GetString(1) + " " + sdr.GetString(2));
+            }
+            sdr.Close();
 
-            //conn.Close();
+            conn.Close();
 
-            //Console.WriteLine("Hello");
+            Console.WriteLine("Hello");
+        }
+
+        string _path = @"Data Source=C:\Users\Kevin\Desktop\WS_1718\GUI\GUI Projekt Doks\Datenbank\consumption_monitoring.db;Version=3;New=True;Compress=True;";
+        public DBManager(string path)
+        {
+            _path = path;
+        }
+
+        public void Create()
+        {
+            using (SQLiteConnection db = new SQLiteConnection(_path))
+            {
+                //db.CreateTable<Consumption>();
+                //db.CreateTable<Track>();
+                var command = db.CreateCommand();
+
+                command.CommandText = @"Select * from Track";
+
+                SQLiteDataReader sdr = command.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    Console.WriteLine(sdr.GetString(1) + " " + sdr.GetString(2));
+                }
+                sdr.Close();
+
+                db.Close();
+
+                Console.WriteLine("Hello");
+            }
+        }
+
+
+    }
+
+    public class SQLiteDb
+    {
+        string _path = @"Data Source=C:\Users\Kevin\Desktop\WS_1718\GUI\GUI Projekt Doks\Datenbank\consumption_monitoring.db;Version=3;New=True;Compress=True;";
+        public SQLiteDb(string path)
+        {
+            _path = path;
+        }
+
+        public void Create()
+        {
+            using (SQLiteConnection db = new SQLiteConnection(_path))
+            {
+                //db.CreateTable<Consumption>();
+                //db.CreateTable<Track>();
+                var command = db.CreateCommand();
+
+                command.CommandText = @"Select * from Track";
+
+                SQLiteDataReader sdr = command.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    Console.WriteLine(sdr.GetString(1) + " " + sdr.GetString(2));
+                }
+                sdr.Close();
+
+                db.Close();
+
+                Console.WriteLine("Hello");
+            }
         }
     }
 }
