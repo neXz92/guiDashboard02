@@ -4,7 +4,9 @@
 //using SQLite;
 using System;
 using System.Data.SQLite;
-
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 
 namespace guiDashboard
 {
@@ -15,8 +17,8 @@ namespace guiDashboard
         {
             _path = path;
         }
-        
-         public void Create()
+
+        public void Create()
         {
             using (SQLiteConnection db = new SQLiteConnection(_path))
             {
