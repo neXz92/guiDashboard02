@@ -1,29 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
-using System.Net.Sockets;
-using System.Net;
 
-namespace sqLite
+namespace guiDashboard
 {
-
-    public class myJsonObj
-    {
-        public int blink { get; set; }
-        public double distance { get; set; }
-        public double fuel { get; set; }
-        public bool fullbeam { get; set; }
-        public int gear { get; set; }
-        public bool light { get; set; }
-        public int outsideTemperature { get; set; }
-        public double rpm { get; set; }
-        public double speed { get; set; }
-        public bool warnsignal { get; set; }
-        public int wiperLevel { get; set; }
-    }
 
     class DBManager
     {

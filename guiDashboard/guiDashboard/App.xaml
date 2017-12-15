@@ -1,9 +1,10 @@
 ﻿<Application x:Class="guiDashboard.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:guiDashboard"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <BitmapImage x:Key="Dashboard" UriSource="Resources\dashboard.png"></BitmapImage>
+        <BitmapImage x:Key="Speedometer" UriSource="Resources\speedometer.png"></BitmapImage>
+        <BitmapImage x:Key="SpeedometerNeedle" UriSource="Resources\speedometer-needle.png"></BitmapImage>
     </Application.Resources>
 </Application>

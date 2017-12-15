@@ -1,35 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.ComponentModel;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.SQLite;
-using guiDashboard;
-using System.Net.Sockets;
-using System.Net;
-using sqLite;
 
 namespace guiDashboard
 {
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public sealed partial class MainWindow : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public int Speed { get; private set; }
+        public int SpeedometerNeedleRotation { get; private set; }
+
+        private bool _receive = true;
+        
         public MainWindow()
         {
             InitializeComponent();
-            DBManager.Create();
-
             StartListener();
         }
 
@@ -60,53 +48,55 @@ namespace guiDashboard
         //    }
         //}
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void StartListener()
         {
-            MessageBox.Show("Hello World");
+            Task.Run(async () =>
+            {
+                using (var client = new UdpClient())
+                {
+                    client.Connect("localhost", 8056);
+                    var message = Encoding.UTF8.GetBytes("START");
+                    client.Send(message, message.Length);
+                    while (_receive)
+                    {
+                        var receivedResult = await client.ReceiveAsync();
+                        var receivedString = Encoding.UTF8.GetString(receivedResult.Buffer);
+                        HandleData(receivedString);
+                    }
+                }
+            });
         }
 
-        private static void StartListener()
+        private void HandleData(string data)
         {
-            // This constructor arbitrarily assigns the local port number.
-            UdpClient udpClient = new UdpClient();
+            var vehicleData = VehicleData.FromJson(data);
 
-            //JavaScriptSerializer serializer = new JavaScriptSerializer();
-            //var deserializedResult = serializer.Deserialize<List<myJsonObj>>(serializedResult);
-
-
-
-            try
-            {
-                udpClient.Connect("127.0.0.1", 8056);
-
-                // Sends a message to the host to which you have connected.
-                Byte[] sendBytes = Encoding.ASCII.GetBytes("START");
-
-                udpClient.Send(sendBytes, sendBytes.Length);
-
-                //IPEndPoint object will allow us to read datagrams sent from any source.
-                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
-
-                // Blocks until a message returns on this socket from a remote host.
-                Byte[] receiveBytes = udpClient.Receive(ref RemoteIpEndPoint);
-                string returnData = Encoding.ASCII.GetString(receiveBytes);
-
-
-                // Uses the IPEndPoint object to determine which of these two hosts responded.
-                Console.WriteLine("This is the message you received " +
-                                             returnData.ToString());
-                Console.WriteLine("This message was sent from " +
-                                            RemoteIpEndPoint.Address.ToString() +
-                                            " on their port number " +
-                                            RemoteIpEndPoint.Port.ToString());
-
-                udpClient.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            Speed = (int) vehicleData.Speed;
+            OnPropertyChanged(nameof(Speed));
+            
+            UpdateSpeedometerNeedleAngle((int) vehicleData.Speed);
         }
 
+        private void UpdateSpeedometerNeedleAngle(int speed)
+        {
+            var angle = speed <= 100
+                ? MapValueToRange(speed, 0, 100, -145, 0) + 5
+                : MapValueToRange(speed, 100, 300, 0, 145) - 5;
+            
+            SpeedometerNeedleRotation = angle;
+            OnPropertyChanged(nameof(SpeedometerNeedleRotation));
+        }
+
+        private static int MapValueToRange(int value, int inputStart, int inputEnd, int outputStart, int outputEnd)
+        {
+            var inputRange = inputEnd - inputStart;
+            var outputRange = outputEnd - outputStart;
+            return (value - inputStart) * outputRange / inputRange + outputStart;
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
