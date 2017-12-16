@@ -10,7 +10,7 @@ namespace guiDashboard
         public bool FullBeam;
         public int Gear;
         public bool Light;
-        public int OutsideTemperature;
+        public float OutsideTemperature;
         public float RPM;
         public float Speed;
         public bool Warnsignal;

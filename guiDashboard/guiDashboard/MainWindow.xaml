@@ -8,24 +8,104 @@
         Background="Transparent" WindowStartupLocation="CenterScreen"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Canvas>
-        <Image Source="{StaticResource Dashboard}" Width="1920" Height="1080" />
-        <Canvas>
-            <Image Source="{StaticResource Speedometer}" Width="533" Height="537" 
-                   Canvas.Left="1293" Canvas.Top="326" />
-            <Image Source="{StaticResource SpeedometerNeedle}" Width="295" Height="410" 
-                   Canvas.Left="1412" Canvas.Top="332">
-                <Image.RenderTransform>
-                    <RotateTransform CenterX="147" CenterY="262" Angle="{Binding SpeedometerNeedleRotation}" />
-                </Image.RenderTransform>
-            </Image>
-            <Grid Width="295" Height="293" Canvas.Left="1412" Canvas.Top="443">
-                <Label Content="{Binding Speed}" FontSize="120" FontWeight="Bold" Foreground="White"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" />
-            </Grid>
-            
-        </Canvas>
+    <Grid>
+        <Image Source="{StaticResource Dashboard}" />
 
-    </Canvas>
+        <Grid Margin="48,81,45,78">
+
+            <DockPanel Width="1000" Height="40" Margin="0,0,0,680" LastChildFill="True">
+                <Label DockPanel.Dock="Left" Content="{Binding Temperature}" Style="{StaticResource TextStyle}"
+                       FontSize="32" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                <Label DockPanel.Dock="Right" Content="{Binding TimeOfDay}" Style="{StaticResource TextStyle}"
+                       FontSize="32" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                <Grid />
+            </DockPanel>
+
+            <UniformGrid Rows="1" Margin="0,244,0,140" Width="1800">
+                <Grid>
+                    <Canvas Margin="108,0,0,0">
+                        <Image Source="{StaticResource MusicPlayer}" Width="349" Height="244" Canvas.Left="15" />
+                        <Grid Canvas.Bottom="0">
+                            <Image Source="{StaticResource RpmCounter}" Width="360" Height="363" />
+                            <Image Source="{StaticResource RpmCounterNeedle}" Width="184" Height="266"
+                                   Margin="0,0,0,82">
+                                <Image.RenderTransform>
+                                    <RotateTransform CenterX="92" CenterY="174" Angle="{Binding RpmNeedleRotation}" />
+                                </Image.RenderTransform>
+                            </Image>
+                            <Label Content="{Binding Rpm}" Style="{StaticResource TextStyle}" FontSize="84"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Grid>
+                    </Canvas>
+                </Grid>
+                <Grid>
+                    <Grid Margin="0,-146,0,10">
+                        <UniformGrid Rows="1" Width="300" Height="70" Margin="0,0,0,368">
+                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
+                                <Grid>
+                                    <Image Source="{StaticResource ToggleButton}" />
+                                    <Image Source="{StaticResource ConsumptionIcon}" Width="45" Height="46" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
+                                <Grid>
+                                    <Image Source="{StaticResource ToggleButton}" />
+                                    <Image Source="{StaticResource MapIcon}" Width="32" Height="44" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
+                                <Grid>
+                                    <Image Source="{StaticResource ToggleButton}" />
+                                    <Image Source="{StaticResource PhoneIcon}" Width="43" Height="43" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
+                                <Grid>
+                                    <Image Source="{StaticResource ToggleButton}" />
+                                    <Image Source="{StaticResource MusicIcon}" Width="39" Height="42" />
+                                </Grid>
+                            </RadioButton>
+                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
+                                <Grid>
+                                    <Image Source="{StaticResource ToggleButton}" />
+                                    <Image Source="{StaticResource SettingsIcon}" Width="40" Height="41" />
+                                </Grid>
+                            </RadioButton>
+                        </UniformGrid>
+                        <Image Source="{StaticResource ConsumptionDisplay}" Width="564" Height="303" />
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Image Source="{StaticResource Speedometer}" Width="533" Height="537" />
+                    <Image Source="{StaticResource SpeedometerNeedle}" Width="295" Height="410" Margin="0,0,0,115">
+                        <Image.RenderTransform>
+                            <RotateTransform CenterX="147.5" CenterY="262.5"
+                                             Angle="{Binding SpeedometerNeedleRotation}" />
+                        </Image.RenderTransform>
+                    </Image>
+                    <Label Content="{Binding Speed}" Style="{StaticResource TextStyle}" FontSize="124"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+
+            </UniformGrid>
+
+            <DockPanel Width="1450" Height="40" Margin="0,0,0,-840" LastChildFill="True">
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                    <Grid>
+                        <Image Source="{StaticResource FuelDisplay}" Width="159" Height="17" />
+                        <Canvas Margin="0,0,0,12">
+                            <Rectangle Canvas.Left="0" Canvas.Bottom="0" Width="{Binding FuelDisplayWidth}" Height="7"
+                                       Fill="White" />
+                        </Canvas>
+                    </Grid>
+                    <Image Source="{StaticResource FuelIcon}" Width="26" Height="31" Margin="10,0,0,0" />
+                </StackPanel>
+                <Label DockPanel.Dock="Right" Content="{Binding DrivenDistance}" Style="{StaticResource TextStyle}"
+                       FontSize="32" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                <Grid />
+            </DockPanel>
+
+        </Grid>
+    </Grid>
 
 </Window>

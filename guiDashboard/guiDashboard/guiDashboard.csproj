@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -127,6 +128,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Audi Type.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -144,12 +146,34 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\consumption_monitoring.db" />
-    <Resource Include="Resources\dashboard.png" />
-    <Resource Include="Resources\speedometer.png" />
+    <Resource Include="Resources\UIElements\dashboard.png" />
+    <Resource Include="Resources\UIElements\speedometer.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\speedometer-needle.png" />
+    <Resource Include="Resources\UIElements\speedometer-needle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UIElements\fuel-display.png" />
+    <Resource Include="Resources\Icons\icon-consumption.png" />
+    <Resource Include="Resources\Icons\icon-fuel.png" />
+    <Resource Include="Resources\Icons\icon-map.png" />
+    <Resource Include="Resources\Icons\icon-music.png" />
+    <Resource Include="Resources\Icons\icon-phone.png" />
+    <Resource Include="Resources\Icons\icon-settings.png" />
+    <Resource Include="Resources\UIElements\music-player.png" />
+    <Resource Include="Resources\UIElements\rpm-counter-needle.png" />
+    <Resource Include="Resources\UIElements\rpm-counter.png" />
+    <Resource Include="Resources\Buttons\toggle-button-selected.png" />
+    <Resource Include="Resources\Buttons\toggle-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UIElements\consumption-display.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\consumption_monitoring.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\simulatorScript.lua" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net46\System.Data.SQLite.Core.targets')" />

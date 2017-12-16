@@ -3,8 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <BitmapImage x:Key="Dashboard" UriSource="Resources\dashboard.png"></BitmapImage>
-        <BitmapImage x:Key="Speedometer" UriSource="Resources\speedometer.png"></BitmapImage>
-        <BitmapImage x:Key="SpeedometerNeedle" UriSource="Resources\speedometer-needle.png"></BitmapImage>
+        <BitmapImage x:Key="Dashboard" UriSource="Resources\UIElements\dashboard.png"></BitmapImage>
+        <BitmapImage x:Key="Speedometer" UriSource="Resources\UIElements\speedometer.png"></BitmapImage>
+        <BitmapImage x:Key="SpeedometerNeedle" UriSource="Resources\UIElements\speedometer-needle.png"></BitmapImage>
+        <BitmapImage x:Key="RpmCounter" UriSource="Resources\UIElements\rpm-counter.png"></BitmapImage>
+        <BitmapImage x:Key="RpmCounterNeedle" UriSource="Resources\UIElements\rpm-counter-needle.png"></BitmapImage>
+        <BitmapImage x:Key="MusicPlayer" UriSource="Resources\UIElements\music-player.png"></BitmapImage>
+        <BitmapImage x:Key="FuelDisplay" UriSource="Resources\UIElements\fuel-display.png"></BitmapImage>
+        <BitmapImage x:Key="ConsumptionDisplay" UriSource="Resources\UIElements\consumption-display.png"></BitmapImage>
+        
+        <BitmapImage x:Key="FuelIcon" UriSource="Resources\Icons\icon-fuel.png"></BitmapImage>
+        <BitmapImage x:Key="MapIcon" UriSource="Resources\Icons\icon-map.png"></BitmapImage>
+        <BitmapImage x:Key="MusicIcon" UriSource="Resources\Icons\icon-music.png"></BitmapImage>
+        <BitmapImage x:Key="PhoneIcon" UriSource="Resources\Icons\icon-phone.png"></BitmapImage>
+        <BitmapImage x:Key="SettingsIcon" UriSource="Resources\Icons\icon-settings.png"></BitmapImage>
+        <BitmapImage x:Key="ConsumptionIcon" UriSource="Resources\Icons\icon-consumption.png"></BitmapImage>
+        
+        <BitmapImage x:Key="ToggleButton" UriSource="Resources\Buttons\toggle-button.png"></BitmapImage>
+        <BitmapImage x:Key="SelectedToggleButton" UriSource="Resources\Buttons\toggle-button-selected.png"></BitmapImage>
+        
+        <Style x:Key="TextStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="Resources\Fonts\Audi Type.ttf" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
     </Application.Resources>
 </Application>
