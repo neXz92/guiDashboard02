@@ -4,6 +4,8 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <BitmapImage x:Key="Dashboard" UriSource="Resources\UIElements\dashboard.png"></BitmapImage>
+        <BitmapImage x:Key="StaticScreen" UriSource="Resources\UIElements\static-screen-background.png"></BitmapImage>
+        
         <BitmapImage x:Key="Speedometer" UriSource="Resources\UIElements\speedometer.png"></BitmapImage>
         <BitmapImage x:Key="SpeedometerNeedle" UriSource="Resources\UIElements\speedometer-needle.png"></BitmapImage>
         <BitmapImage x:Key="RpmCounter" UriSource="Resources\UIElements\rpm-counter.png"></BitmapImage>

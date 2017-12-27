@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Control="clr-namespace:guiDashboard"
         mc:Ignorable="d"
         Title="PavKevUI" Width="1920" Height="1080" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True"
         Background="Transparent" WindowStartupLocation="CenterScreen"
@@ -24,7 +25,11 @@
             <UniformGrid Rows="1" Margin="0,244,0,140" Width="1800">
                 <Grid>
                     <Canvas Margin="108,0,0,0">
-                        <Image Source="{StaticResource MusicPlayer}" Width="349" Height="244" Canvas.Left="15" />
+                        <Grid Canvas.Left="15">
+                            <Image Source="{StaticResource MusicPlayer}" Width="349" Height="244" />
+                            <Label Content="Billy Talent - Red Flag" Style="{StaticResource TextStyle}" FontSize="32" VerticalAlignment="Center" Margin="20,60,10,136" />
+                        </Grid>
+
                         <Grid Canvas.Bottom="0">
                             <Image Source="{StaticResource RpmCounter}" Width="360" Height="363" />
                             <Image Source="{StaticResource RpmCounterNeedle}" Width="184" Height="266"
@@ -33,48 +38,14 @@
                                     <RotateTransform CenterX="92" CenterY="174" Angle="{Binding RpmNeedleRotation}" />
                                 </Image.RenderTransform>
                             </Image>
-                            <Label Content="{Binding Rpm}" Style="{StaticResource TextStyle}" FontSize="84"
+                            <Label Content="{Binding Rpm}" Style="{StaticResource TextStyle}" FontSize="84" Width="180" Height="90"
                                    VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </Grid>
                     </Canvas>
                 </Grid>
-                <Grid>
-                    <Grid Margin="0,-146,0,10">
-                        <UniformGrid Rows="1" Width="300" Height="70" Margin="0,0,0,368">
-                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
-                                <Grid>
-                                    <Image Source="{StaticResource ToggleButton}" />
-                                    <Image Source="{StaticResource ConsumptionIcon}" Width="45" Height="46" />
-                                </Grid>
-                            </RadioButton>
-                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
-                                <Grid>
-                                    <Image Source="{StaticResource ToggleButton}" />
-                                    <Image Source="{StaticResource MapIcon}" Width="32" Height="44" />
-                                </Grid>
-                            </RadioButton>
-                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
-                                <Grid>
-                                    <Image Source="{StaticResource ToggleButton}" />
-                                    <Image Source="{StaticResource PhoneIcon}" Width="43" Height="43" />
-                                </Grid>
-                            </RadioButton>
-                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
-                                <Grid>
-                                    <Image Source="{StaticResource ToggleButton}" />
-                                    <Image Source="{StaticResource MusicIcon}" Width="39" Height="42" />
-                                </Grid>
-                            </RadioButton>
-                            <RadioButton Background="Transparent" Style="{StaticResource {x:Type ToggleButton}}">
-                                <Grid>
-                                    <Image Source="{StaticResource ToggleButton}" />
-                                    <Image Source="{StaticResource SettingsIcon}" Width="40" Height="41" />
-                                </Grid>
-                            </RadioButton>
-                        </UniformGrid>
-                        <Image Source="{StaticResource ConsumptionDisplay}" Width="564" Height="303" />
-                    </Grid>
-                </Grid>
+
+                <Control:StaticScreen Margin="0,-40,0,200" />
+
                 <Grid>
                     <Image Source="{StaticResource Speedometer}" Width="533" Height="537" />
                     <Image Source="{StaticResource SpeedometerNeedle}" Width="295" Height="410" Margin="0,0,0,115">
@@ -83,7 +54,7 @@
                                              Angle="{Binding SpeedometerNeedleRotation}" />
                         </Image.RenderTransform>
                     </Image>
-                    <Label Content="{Binding Speed}" Style="{StaticResource TextStyle}" FontSize="124"
+                    <Label Content="{Binding Speed}" Style="{StaticResource TextStyle}" FontSize="124" Width="280" Height="140"
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Grid>
 
