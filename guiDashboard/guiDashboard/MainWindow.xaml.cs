@@ -22,6 +22,10 @@ namespace guiDashboard
         public int FuelDisplayWidth { get; private set; }
         public bool BlinkLeft { get; private set; }
         public bool BlinkRight { get; private set; }
+        public bool FullBeam { get; private set; }
+        public bool Light { get; private set; }
+        public bool WarnSignal { get; private set; }
+        public bool Wiper { get; private set; }
 
         private bool _receive = true;
 
@@ -126,6 +130,19 @@ namespace guiDashboard
             }
             OnPropertyChanged(nameof(BlinkLeft));
             OnPropertyChanged(nameof(BlinkRight));
+
+            var wiper = vehicleData.WiperLevel;
+            Wiper = wiper != 0;
+            OnPropertyChanged(nameof(Wiper));
+
+            FullBeam = vehicleData.FullBeam;
+            OnPropertyChanged(nameof(FullBeam));
+            
+            WarnSignal = vehicleData.Warnsignal;
+            OnPropertyChanged(nameof(WarnSignal));
+            
+            Light = vehicleData.Light;
+            OnPropertyChanged(nameof(Light));
         }
 
         private static float MapValueToRange(float value, float inputStart, float inputEnd, float outputStart,

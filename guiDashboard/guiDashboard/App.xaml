@@ -43,6 +43,18 @@
             <Setter Property="Foreground" Value="White" />
         </Style>
 
+        <Style x:Key="GlowStyle" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Orange" Direction="90" BlurRadius="16" ShadowDepth="0" Opacity="1" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="BlinkStyle" TargetType="{x:Type Image}">
             <Style.Resources>
                 <Storyboard x:Key="FlashAnimation" >
@@ -54,7 +66,7 @@
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect Color="#FFD53131" Direction="0" BlurRadius="10" ShadowDepth="4" Opacity="0.75" />
+                            <DropShadowEffect Color="#FFD53131" Direction="0" BlurRadius="32" ShadowDepth="0" Opacity="1" />
                         </Setter.Value>
                     </Setter>
                     <DataTrigger.EnterActions>

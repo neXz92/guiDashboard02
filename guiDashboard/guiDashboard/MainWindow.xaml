@@ -14,6 +14,28 @@
 
         <Grid Margin="48,81,45,78">
 
+            <UniformGrid HorizontalAlignment="Center" Rows="1" Width="500" Height="80" Margin="0,10,0,830">
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Tag="{Binding Wiper}" Source="{StaticResource WiperIcon}"
+                           Width="64" Height="64" Margin="0,20,0,0" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource BrakeSystemIcon}" Width="64"
+                           Height="64" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource DoorIcon}" Width="64" Height="64" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource BatteryIcon}" Width="64"
+                           Height="64" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource OilIcon}" Width="64" Height="64"
+                           Margin="0,20,0,0" />
+                </Grid>
+            </UniformGrid>
+
             <DockPanel Width="1000" Height="40" Margin="0,0,0,680" LastChildFill="True">
                 <Label DockPanel.Dock="Left" Content="{Binding Temperature}" Style="{StaticResource TextStyle}"
                        FontSize="32" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
@@ -74,6 +96,29 @@
                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 </Grid>
 
+            </UniformGrid>
+
+            <UniformGrid HorizontalAlignment="Center" Rows="1" Width="500" Height="80" Margin="0,710,0,130">
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource LowBeamIcon}" Width="64"
+                           Height="64" Margin="0,20,0,0" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Tag="{Binding FullBeam}"
+                           Source="{StaticResource HighBeamIcon}" Width="64" Height="64" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource FogLightIcon}" Width="64"
+                           Height="64" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Tag="{Binding Light}"
+                           Source="{StaticResource ParkingLightIcon}" Width="64" Height="64" />
+                </Grid>
+                <Grid>
+                    <Image Style="{StaticResource GlowStyle}" Source="{StaticResource DefrostIcon}" Width="64"
+                           Height="64" Margin="0,20,0,0" />
+                </Grid>
             </UniformGrid>
 
             <DockPanel Width="1450" Height="40" Margin="0,0,0,-840" LastChildFill="True">
