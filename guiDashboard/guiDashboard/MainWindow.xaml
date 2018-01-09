@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Control="clr-namespace:guiDashboard"
+        xmlns:control="clr-namespace:guiDashboard"
         mc:Ignorable="d"
         Title="PavKevUI" Width="1920" Height="1080" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True"
         Background="Transparent" WindowStartupLocation="CenterScreen"
@@ -27,7 +27,8 @@
                     <Canvas Margin="108,0,0,0">
                         <Grid Canvas.Left="15">
                             <Image Source="{StaticResource MusicPlayer}" Width="349" Height="244" />
-                            <Label Content="Billy Talent - Red Flag" Style="{StaticResource TextStyle}" FontSize="32" VerticalAlignment="Center" Margin="20,60,10,136" />
+                            <Label Content="Billy Talent - Red Flag" Style="{StaticResource TextStyle}" FontSize="32"
+                                   VerticalAlignment="Center" Margin="20,60,10,136" />
                         </Grid>
 
                         <Grid Canvas.Bottom="0">
@@ -38,13 +39,27 @@
                                     <RotateTransform CenterX="92" CenterY="174" Angle="{Binding RpmNeedleRotation}" />
                                 </Image.RenderTransform>
                             </Image>
-                            <Label Content="{Binding Rpm}" Style="{StaticResource TextStyle}" FontSize="84" Width="180" Height="90"
-                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Label Content="{Binding Rpm}" Style="{StaticResource TextStyle}" FontSize="84" Width="180"
+                                   Height="90"
+                                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                         </Grid>
                     </Canvas>
                 </Grid>
 
-                <Control:StaticScreen Margin="0,-40,0,200" />
+                <Grid>
+                    <control:StaticScreen Margin="0,-40,0,200" />
+                    <Canvas Width="680" Height="70" HorizontalAlignment="Center" Margin="0,-40,0,500">
+                        <DockPanel Width="680" LastChildFill="True">
+                            <Image Style="{StaticResource BlinkStyle}" Tag="{Binding BlinkLeft}"
+                                   Source="{StaticResource TurnLeftIcon}" Width="64" Height="68" DockPanel.Dock="Left" />
+                            <Image Style="{StaticResource BlinkStyle}" Tag="{Binding BlinkRight}"
+                                   Source="{StaticResource TurnRightIcon}" Width="64" Height="68"
+                                   DockPanel.Dock="Right" />
+                            <Grid />
+                        </DockPanel>
+                    </Canvas>
+                </Grid>
+
 
                 <Grid>
                     <Image Source="{StaticResource Speedometer}" Width="533" Height="537" />
@@ -54,8 +69,9 @@
                                              Angle="{Binding SpeedometerNeedleRotation}" />
                         </Image.RenderTransform>
                     </Image>
-                    <Label Content="{Binding Speed}" Style="{StaticResource TextStyle}" FontSize="124" Width="280" Height="140"
-                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Label Content="{Binding Speed}" Style="{StaticResource TextStyle}" FontSize="124" Width="280"
+                           Height="140"
+                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                 </Grid>
 
             </UniformGrid>
