@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.SQLite;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,36 +19,21 @@ namespace guiDashboard
         public string TimeOfDay { get; private set; }
         public string DrivenDistance { get; private set; }
         public int FuelDisplayWidth { get; private set; }
+        public bool BlinkLeft { get; private set; }
+        public bool BlinkRight { get; private set; }
+        public bool FullBeam { get; private set; }
+        public bool Light { get; private set; }
+        public bool WarnSignal { get; private set; }
+        public bool Wiper { get; private set; }
 
         private bool _receive = true;
-        
+
         public MainWindow()
         {
             InitializeComponent();
-            FetchSqliteData();
             StartSimulationListener();
         }
-
-
-        private static void FetchSqliteData()
-        {
-            // TODO do something with the data x)
-            
-            using (var database = new SQLiteConnection(@"Data Source=Resources\consumption_monitoring.db"))
-            {
-                database.Open();
-                var consumptionForTrackOne = new SQLiteCommand("SELECT consumption FROM Consumption WHERE trackid=1", database);
-                var reader = consumptionForTrackOne.ExecuteReader();
-                
-                while (reader.Read())
-                {
-                    var consumption = float.Parse(reader["consumption"].ToString());
-                    Console.WriteLine(consumption);
-                }
-                database.Close();
-            }
-        }
-
+        
         private void StartSimulationListener()
         {
             Task.Run(async () =>
@@ -76,7 +60,7 @@ namespace guiDashboard
             var speed = vehicleData.Speed;
             Speed = (int) speed;
             OnPropertyChanged(nameof(Speed));
-            
+
             SpeedometerNeedleRotation = (int) (speed <= 100
                 ? MapValueToRange(speed, 0, 100, -140, 0)
                 : MapValueToRange(speed, 100, 300, 0, 138));
@@ -104,9 +88,43 @@ namespace guiDashboard
             var fuel = vehicleData.Fuel;
             FuelDisplayWidth = (int) MapValueToRange(fuel, 0f, 1f, 0, 159);
             OnPropertyChanged(nameof(FuelDisplayWidth));
+
+            var blink = vehicleData.Blink;
+            switch (blink)
+            {
+                case -1:
+                    BlinkLeft = true;
+                    BlinkRight = false;
+                    break;
+                case 1:
+                    BlinkLeft = false;
+                    BlinkRight = true;
+                    break;
+                default:
+                    BlinkLeft = false;
+                    BlinkRight = false;
+                    break;
+            }
+            OnPropertyChanged(nameof(BlinkLeft));
+            OnPropertyChanged(nameof(BlinkRight));
+
+            var wiper = vehicleData.WiperLevel;
+            Wiper = wiper != 0;
+            OnPropertyChanged(nameof(Wiper));
+
+            FullBeam = vehicleData.FullBeam;
+            OnPropertyChanged(nameof(FullBeam));
+            
+            WarnSignal = vehicleData.Warnsignal;
+//            Console.WriteLine(WarnSignal);
+            OnPropertyChanged(nameof(WarnSignal));
+            
+            Light = vehicleData.Light;
+            OnPropertyChanged(nameof(Light));
         }
 
-        private static float MapValueToRange(float value, float inputStart, float inputEnd, float outputStart, float outputEnd)
+        private static float MapValueToRange(float value, float inputStart, float inputEnd, float outputStart,
+            float outputEnd)
         {
             var inputRange = inputEnd - inputStart;
             var outputRange = outputEnd - outputStart;
