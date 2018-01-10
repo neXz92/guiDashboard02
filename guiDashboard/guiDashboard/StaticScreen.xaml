@@ -6,6 +6,7 @@
              xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
     <Grid>
         <TabControl Width="564" Height="373" Background="Transparent" BorderBrush="Transparent">
             <TabControl.Resources>
@@ -106,10 +107,12 @@
                             </Style>
                         </chartingToolkit:Chart.LegendStyle>
                         <chartingToolkit:Chart.Axes>
-                            <chartingToolkit:LinearAxis Orientation="Y" Title="Verbrauch (in l/100km)" />
+                            <chartingToolkit:LinearAxis Interval="0.25" Orientation="Y" Title="Verbrauch (in l/100km)"
+                                                        ShowGridLines="True" />
                             <chartingToolkit:DateTimeAxis Orientation="X" Title="Zeit" />
                         </chartingToolkit:Chart.Axes>
-                        <chartingToolkit:LineSeries DependentValuePath="Value" IndependentValuePath="Key"
+                        <chartingToolkit:LineSeries DataPointStyle="{StaticResource ChartPointStyle}"
+                                                    DependentValuePath="Value" IndependentValuePath="Key"
                                                     ItemsSource="{Binding}" />
                     </chartingToolkit:Chart>
                 </Grid>
@@ -117,19 +120,120 @@
             <TabItem Header="Phone">
                 <Grid>
                     <Image Source="{StaticResource StaticScreen}" />
+                    <UniformGrid Rows="2">
+                        <Grid>
+                            <Label Style="{StaticResource TextStyle}" FontSize="18" Content="Eingehender Anruf"
+                                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" />
+                            <Label Style="{StaticResource TextStyle}" FontSize="36" Content="Wainer Rinkler"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0" />
+                            <Label Style="{StaticResource TextStyle}" FontSize="24" Content="+49 151 6589485"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <UniformGrid Width="400" Rows="1">
+                            <StackPanel>
+                                <Image Source="{StaticResource DeclineIcon}" Width="96" Height="96" />
+                                <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Ablehnen"
+                                       HorizontalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel>
+                                <Image Source="{StaticResource AcceptIcon}" Width="96" Height="96" />
+                                <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Annehmen"
+                                       HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </UniformGrid>
+                    </UniformGrid>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Music">
                 <Grid>
                     <Image Source="{StaticResource StaticScreen}" />
+                    <ListBox Width="480" Height="180" Name="SongList" Background="Transparent"
+                             BorderBrush="Transparent" HorizontalContentAlignment="Stretch"
+                             ItemsSource="{Binding Songs}"
+                             SelectionChanged="OnSongSelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <Label DockPanel.Dock="Left" Style="{StaticResource TextStyle}"
+                                           Content="{Binding Path=Title}" HorizontalAlignment="Left" />
+                                    <Label DockPanel.Dock="Right" Style="{StaticResource TextStyle}"
+                                           Content="{Binding Path=Duration}" HorizontalAlignment="Right" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">
                 <Grid>
                     <Image Source="{StaticResource StaticScreen}" />
+                    <UniformGrid Width="400" Height="200" Rows="6" Columns="2">
+                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Design"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Grid>
+                            <ComboBox HorizontalAlignment="Left" Width="100" Height="20" SelectedIndex="0">
+                                <ComboBoxItem Content="Design 1" />
+                                <ComboBoxItem Content="Design 2" />
+                                <ComboBoxItem Content="Design 3" />
+                            </ComboBox>
+                        </Grid>
+
+                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Sprache"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Grid>
+                            <ComboBox HorizontalAlignment="Left" Width="100" Height="20" SelectedIndex="0">
+                                <ComboBoxItem Content="Deutsch" />
+                                <ComboBoxItem Content="Englisch" />
+                                <ComboBoxItem Content="Französisch" />
+                                <ComboBoxItem Content="Italienisch" />
+                                <ComboBoxItem Content="Spanisch" />
+                                <ComboBoxItem Content="Niederländisch" />
+                                <ComboBoxItem Content="Polnisch" />
+                            </ComboBox>
+                        </Grid>
+
+                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Zeitformat"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <RadioButton TextElement.Foreground="White" Content="12 h" />
+                                <RadioButton Margin="10,0,0,0" TextElement.Foreground="White" Content="24 h"
+                                             IsChecked="True" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Helligkeit"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <Slider Name="BrightnessSlider" Width="150" Maximum="100" LargeChange="25"
+                                        SmallChange="1" TickFrequency="10" Value="80" TextElement.Foreground="White"
+                                        TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
+                                <Label Style="{StaticResource TextStyle}"
+                                       Content="{Binding ElementName=BrightnessSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Temperatur"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <RadioButton TextElement.Foreground="White" Content="°Celsius" IsChecked="True" />
+                                <RadioButton Margin="10,0,0,0" TextElement.Foreground="White" Content="°Fahrenheit" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="GPS Sync"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Grid>
+                            <CheckBox VerticalAlignment="Center" IsChecked="True" />
+                        </Grid>
+
+
+                    </UniformGrid>
                 </Grid>
             </TabItem>
         </TabControl>
     </Grid>
-
 </UserControl>

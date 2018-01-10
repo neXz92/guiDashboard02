@@ -73,7 +73,7 @@
     <Compile Include="StaticScreen.xaml.cs">
       <DependentUpon>StaticScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VehicleData.cs" />
+    <Compile Include="DataClasses.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -161,7 +161,6 @@
     </Content>
     <Resource Include="Resources\Icons\Indicators\battery.png" />
     <Resource Include="Resources\Icons\Indicators\brake-system-warning.png" />
-    <Content Include="Resources\Icons\Indicators\credit.txt" />
     <Resource Include="Resources\Icons\Indicators\doors.png" />
     <Resource Include="Resources\Icons\Indicators\fog-light.png" />
     <Resource Include="Resources\Icons\Indicators\high-beam.png" />
@@ -174,6 +173,8 @@
     <Resource Include="Resources\Icons\Indicators\warning.png" />
     <Resource Include="Resources\Icons\Indicators\windshield-defrost.png" />
     <Resource Include="Resources\Icons\Indicators\winshield-wiper.png" />
+    <Resource Include="Resources\Icons\Other\phone-accept.png" />
+    <Resource Include="Resources\Icons\Other\phone-decline.png" />
     <Content Include="Resources\simulatorScript.lua" />
     <Resource Include="Resources\UIElements\static-screen-background.png" />
   </ItemGroup>

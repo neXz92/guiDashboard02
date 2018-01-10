@@ -8,40 +8,28 @@ using System.Windows.Controls;
 
 namespace guiDashboard
 {
-    /// <summary>
-    /// Public data class to store Track data (from SQLite database)
-    /// A list of TrackData will be provided as ItemsSource for the track selection DataGrid
-    /// </summary>
-    public class TrackData
-    {
-        public string Id { get; }
-        public string Start { get; }
-        public string Destination { get; }
-        public string Duration { get; }
-        public string Date { get; }
-
-        public TrackData(string id, string start, string destination, string duration, string date)
-        {
-            Id = id;
-            Start = start;
-            Destination = destination;
-            Duration = duration;
-            Date = date;
-        }
-    }
-
     public sealed partial class StaticScreen : INotifyPropertyChanged
     {
         public List<TrackData> Tracks { get; private set; } = new List<TrackData>();
+        public string CurrentSong { get; private set; } = "Irgend ein Song";
+
+        public IEnumerable<SongData> Songs { get; } = new List<SongData>
+        {
+            new SongData("Globus - A Thousand Deaths", new TimeSpan(0, 6, 30)),
+            new SongData("Billy Talent - Red Flag", new TimeSpan(0, 3, 16)),
+            new SongData("Avril Lavigne - Sk8er Boi", new TimeSpan(0, 3, 24)),
+            new SongData("System of A Down - Toxicity", new TimeSpan(0, 3, 39)),
+            new SongData("Within Temptation - Let Us Burn", new TimeSpan(0, 5, 31)),
+            new SongData("Linkin Park - In the End", new TimeSpan(0, 3, 36)),
+            new SongData("Avantasia - Journey to Arcadia", new TimeSpan(0, 7, 12))
+        };
 
 
         public StaticScreen()
         {
             InitializeComponent();
             InitializeTrackList();
-
-            TrackTable.SelectedIndex = 0;
-            UpdateConsumptionChart(1);
+            InitializeSongList();
         }
 
         private void InitializeTrackList()
@@ -70,14 +58,31 @@ namespace guiDashboard
 
                 sqlite.Close();
             }
+            TrackTable.SelectedIndex = 0;
+            UpdateConsumptionChart(1);
+        }
+
+        private void InitializeSongList()
+        {
+            //SongList.ItemsSource = Songs;
+            SongList.SelectedIndex = 0;
         }
 
         private void OnTrackSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var grid = sender as DataGrid;
-
             if (grid?.SelectedItem is TrackData track)
                 UpdateConsumptionChart(int.Parse(track.Id));
+        }
+
+        private void OnSongSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var list = sender as ListBox;
+            if (list?.SelectedItem is SongData song)
+            {
+                CurrentSong = $"{song.Title}";
+                OnPropertyChanged(nameof(CurrentSong));
+            }
         }
 
         private void UpdateConsumptionChart(int trackId)

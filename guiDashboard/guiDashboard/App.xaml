@@ -1,6 +1,7 @@
 ﻿<Application x:Class="guiDashboard.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <BitmapImage x:Key="Dashboard" UriSource="Resources\UIElements\dashboard.png" />
@@ -35,6 +36,10 @@
         <BitmapImage x:Key="DefrostIcon" UriSource="Resources\Icons\Indicators\windshield-defrost.png" />
         <BitmapImage x:Key="TurnLeftIcon" UriSource="Resources\Icons\Indicators\turn-signal-left.png" />
         <BitmapImage x:Key="TurnRightIcon" UriSource="Resources\Icons\Indicators\turn-signal-right.png" />
+
+        <!-- Phone Icons made by SimpleIcon from www.flaticon.com -->
+        <BitmapImage x:Key="AcceptIcon" UriSource="Resources\Icons\Other\phone-accept.png" />
+        <BitmapImage x:Key="DeclineIcon" UriSource="Resources\Icons\Other\phone-decline.png" />
 
         <BitmapImage x:Key="ToggleButton" UriSource="Resources\Buttons\toggle-button.png" />
         <BitmapImage x:Key="SelectedToggleButton" UriSource="Resources\Buttons\toggle-button-selected.png" />
@@ -100,7 +105,11 @@
                     <Setter Property="Background" Value="#FF5E0000" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
 
+        <Style x:Key="ChartPointStyle" TargetType="{x:Type chartingToolkit:LineDataPoint}">
+            <Setter Property="Background" Value="#FF5E0000" />
+            <Setter Property="Opacity" Value="0" />
         </Style>
 
     </Application.Resources>

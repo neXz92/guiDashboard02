@@ -48,9 +48,21 @@
                 <Grid>
                     <Canvas Margin="108,0,0,0">
                         <Grid Canvas.Left="15">
+                            <Grid.DataContext>
+                                <control:StaticScreen />
+                            </Grid.DataContext>
                             <Image Source="{StaticResource MusicPlayer}" Width="349" Height="244" />
-                            <Label Content="Billy Talent - Red Flag" Style="{StaticResource TextStyle}" FontSize="32"
-                                   VerticalAlignment="Center" Margin="20,60,10,136" />
+                            <Label Content="Aktuelle Wiedergabe:" Style="{StaticResource TextStyle}" FontSize="16"
+                                   Width="160" Height="30" HorizontalAlignment="Center" Margin="100,35,90,186" />
+                            <Grid Name="CurrentSongBounds" ClipToBounds="True" Width="320" Height="50"
+                                  Margin="15,65,15,136">
+                                <Canvas>
+                                    <Label Name="CurrentSongLabel" Content="{Binding CurrentSong}"
+                                           Style="{StaticResource TextStyle}" FontSize="32" FontStyle="Italic"
+                                           VerticalAlignment="Center" Canvas.Left="0" Width="450" />
+                                </Canvas>
+
+                            </Grid>
                         </Grid>
 
                         <Grid Canvas.Bottom="0">
@@ -69,7 +81,8 @@
                 </Grid>
 
                 <Grid>
-                    <control:StaticScreen Margin="0,38,0,121" />
+                    <control:StaticScreen x:Name="SecondScreen" Margin="0,38,0,121" />
+
                     <Canvas Width="620" Height="70" HorizontalAlignment="Center" Margin="-40,38,-40,423">
                         <DockPanel Width="620" LastChildFill="True">
                             <Image Style="{StaticResource BlinkStyle}" Tag="{Binding BlinkLeft}"

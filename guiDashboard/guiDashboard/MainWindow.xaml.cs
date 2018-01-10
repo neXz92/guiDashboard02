@@ -4,6 +4,9 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace guiDashboard
 {
@@ -31,9 +34,22 @@ namespace guiDashboard
         public MainWindow()
         {
             InitializeComponent();
+            AnimateCurrentSongText();
             StartSimulationListener();
         }
-        
+
+        private void AnimateCurrentSongText()
+        {
+            var animation = new DoubleAnimation
+            {
+                From = CurrentSongBounds.Width,
+                To = -CurrentSongLabel.Width,
+                RepeatBehavior = RepeatBehavior.Forever,
+                Duration = new Duration(TimeSpan.FromSeconds(8))
+            };
+            CurrentSongLabel.BeginAnimation(Canvas.LeftProperty, animation);
+        }
+
         private void StartSimulationListener()
         {
             Task.Run(async () =>
@@ -114,11 +130,11 @@ namespace guiDashboard
 
             FullBeam = vehicleData.FullBeam;
             OnPropertyChanged(nameof(FullBeam));
-            
+
             WarnSignal = vehicleData.Warnsignal;
 //            Console.WriteLine(WarnSignal);
             OnPropertyChanged(nameof(WarnSignal));
-            
+
             Light = vehicleData.Light;
             OnPropertyChanged(nameof(Light));
         }
