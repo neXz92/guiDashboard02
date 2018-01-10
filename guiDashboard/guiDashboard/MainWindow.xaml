@@ -69,17 +69,23 @@
                 </Grid>
 
                 <Grid>
-                    <control:StaticScreen Margin="0,-40,0,200" />
-                    <Canvas Width="680" Height="70" HorizontalAlignment="Center" Margin="0,-40,0,500">
-                        <DockPanel Width="680" LastChildFill="True">
+                    <control:StaticScreen Margin="0,38,0,121" />
+                    <Canvas Width="620" Height="70" HorizontalAlignment="Center" Margin="-40,38,-40,423">
+                        <DockPanel Width="620" LastChildFill="True">
                             <Image Style="{StaticResource BlinkStyle}" Tag="{Binding BlinkLeft}"
-                                   Source="{StaticResource TurnLeftIcon}" Width="64" Height="68" DockPanel.Dock="Left" />
+                                   Source="{StaticResource TurnLeftIcon}" Width="64" Height="68" DockPanel.Dock="Left"
+                                   VerticalAlignment="Top" />
                             <Image Style="{StaticResource BlinkStyle}" Tag="{Binding BlinkRight}"
                                    Source="{StaticResource TurnRightIcon}" Width="64" Height="68"
-                                   DockPanel.Dock="Right" />
-                            <Grid />
+                                   DockPanel.Dock="Right" VerticalAlignment="Top" />
+                            <Grid>
+                                <Image Style="{StaticResource BlinkStyle}" Tag="{Binding WarnSignal}"
+                                       Source="{StaticResource WarningIcon}" Width="96" Height="96"
+                                       Margin="0,-146,0,146" />
+                            </Grid>
                         </DockPanel>
                     </Canvas>
+
                 </Grid>
 
 

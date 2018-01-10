@@ -3,40 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <BitmapImage x:Key="Dashboard" UriSource="Resources\UIElements\dashboard.png"></BitmapImage>
-        <BitmapImage x:Key="StaticScreen" UriSource="Resources\UIElements\static-screen-background.png"></BitmapImage>
-        
-        <BitmapImage x:Key="Speedometer" UriSource="Resources\UIElements\speedometer.png"></BitmapImage>
-        <BitmapImage x:Key="SpeedometerNeedle" UriSource="Resources\UIElements\speedometer-needle.png"></BitmapImage>
-        <BitmapImage x:Key="RpmCounter" UriSource="Resources\UIElements\rpm-counter.png"></BitmapImage>
-        <BitmapImage x:Key="RpmCounterNeedle" UriSource="Resources\UIElements\rpm-counter-needle.png"></BitmapImage>
-        <BitmapImage x:Key="MusicPlayer" UriSource="Resources\UIElements\music-player.png"></BitmapImage>
-        <BitmapImage x:Key="FuelDisplay" UriSource="Resources\UIElements\fuel-display.png"></BitmapImage>
-        <BitmapImage x:Key="ConsumptionDisplay" UriSource="Resources\UIElements\consumption-display.png"></BitmapImage>
-        
-        <BitmapImage x:Key="FuelIcon" UriSource="Resources\Icons\icon-fuel.png"></BitmapImage>
-        <BitmapImage x:Key="MapIcon" UriSource="Resources\Icons\icon-map.png"></BitmapImage>
-        <BitmapImage x:Key="MusicIcon" UriSource="Resources\Icons\icon-music.png"></BitmapImage>
-        <BitmapImage x:Key="PhoneIcon" UriSource="Resources\Icons\icon-phone.png"></BitmapImage>
-        <BitmapImage x:Key="SettingsIcon" UriSource="Resources\Icons\icon-settings.png"></BitmapImage>
-        <BitmapImage x:Key="ConsumptionIcon" UriSource="Resources\Icons\icon-consumption.png"></BitmapImage>
+        <BitmapImage x:Key="Dashboard" UriSource="Resources\UIElements\dashboard.png" />
+        <BitmapImage x:Key="StaticScreen" UriSource="Resources\UIElements\static-screen-background.png" />
 
-        <BitmapImage x:Key="BatteryIcon" UriSource="Resources\Icons\Indicators\battery.png"></BitmapImage>
-        <BitmapImage x:Key="LowBeamIcon" UriSource="Resources\Icons\Indicators\low-beam.png"></BitmapImage>
-        <BitmapImage x:Key="HighBeamIcon" UriSource="Resources\Icons\Indicators\high-beam.png"></BitmapImage>
-        <BitmapImage x:Key="FogLightIcon" UriSource="Resources\Icons\Indicators\fog-light.png"></BitmapImage>
-        <BitmapImage x:Key="DoorIcon" UriSource="Resources\Icons\Indicators\doors.png"></BitmapImage>
-        <BitmapImage x:Key="BrakeSystemIcon" UriSource="Resources\Icons\Indicators\brake-system-warning.png"></BitmapImage>
-        <BitmapImage x:Key="OilIcon" UriSource="Resources\Icons\Indicators\oil.png"></BitmapImage>
-        <BitmapImage x:Key="ParkingLightIcon" UriSource="Resources\Icons\Indicators\parking-lights.png"></BitmapImage>
-        <BitmapImage x:Key="WarningIcon" UriSource="Resources\Icons\Indicators\warning.png"></BitmapImage>
-        <BitmapImage x:Key="WiperIcon" UriSource="Resources\Icons\Indicators\winshield-wiper.png"></BitmapImage>
-        <BitmapImage x:Key="DefrostIcon" UriSource="Resources\Icons\Indicators\windshield-defrost.png"></BitmapImage>
-        <BitmapImage x:Key="TurnLeftIcon" UriSource="Resources\Icons\Indicators\turn-signal-left.png"></BitmapImage>
-        <BitmapImage x:Key="TurnRightIcon" UriSource="Resources\Icons\Indicators\turn-signal-right.png"></BitmapImage>
-        
-        <BitmapImage x:Key="ToggleButton" UriSource="Resources\Buttons\toggle-button.png"></BitmapImage>
-        <BitmapImage x:Key="SelectedToggleButton" UriSource="Resources\Buttons\toggle-button-selected.png"></BitmapImage>
+        <BitmapImage x:Key="Speedometer" UriSource="Resources\UIElements\speedometer.png" />
+        <BitmapImage x:Key="SpeedometerNeedle" UriSource="Resources\UIElements\speedometer-needle.png" />
+        <BitmapImage x:Key="RpmCounter" UriSource="Resources\UIElements\rpm-counter.png" />
+        <BitmapImage x:Key="RpmCounterNeedle" UriSource="Resources\UIElements\rpm-counter-needle.png" />
+        <BitmapImage x:Key="MusicPlayer" UriSource="Resources\UIElements\music-player.png" />
+        <BitmapImage x:Key="FuelDisplay" UriSource="Resources\UIElements\fuel-display.png" />
+        <BitmapImage x:Key="ConsumptionDisplay" UriSource="Resources\UIElements\consumption-display.png" />
+
+        <BitmapImage x:Key="FuelIcon" UriSource="Resources\Icons\icon-fuel.png" />
+        <BitmapImage x:Key="MapIcon" UriSource="Resources\Icons\icon-map.png" />
+        <BitmapImage x:Key="MusicIcon" UriSource="Resources\Icons\icon-music.png" />
+        <BitmapImage x:Key="PhoneIcon" UriSource="Resources\Icons\icon-phone.png" />
+        <BitmapImage x:Key="SettingsIcon" UriSource="Resources\Icons\icon-settings.png" />
+        <BitmapImage x:Key="ConsumptionIcon" UriSource="Resources\Icons\icon-consumption.png" />
+
+        <!-- Indicator Icons made by Freepik from www.flaticon.com -->
+        <BitmapImage x:Key="BatteryIcon" UriSource="Resources\Icons\Indicators\battery.png" />
+        <BitmapImage x:Key="LowBeamIcon" UriSource="Resources\Icons\Indicators\low-beam.png" />
+        <BitmapImage x:Key="HighBeamIcon" UriSource="Resources\Icons\Indicators\high-beam.png" />
+        <BitmapImage x:Key="FogLightIcon" UriSource="Resources\Icons\Indicators\fog-light.png" />
+        <BitmapImage x:Key="DoorIcon" UriSource="Resources\Icons\Indicators\doors.png" />
+        <BitmapImage x:Key="BrakeSystemIcon" UriSource="Resources\Icons\Indicators\brake-system-warning.png" />
+        <BitmapImage x:Key="OilIcon" UriSource="Resources\Icons\Indicators\oil.png" />
+        <BitmapImage x:Key="ParkingLightIcon" UriSource="Resources\Icons\Indicators\parking-lights.png" />
+        <BitmapImage x:Key="WarningIcon" UriSource="Resources\Icons\Indicators\warning.png" />
+        <BitmapImage x:Key="WiperIcon" UriSource="Resources\Icons\Indicators\winshield-wiper.png" />
+        <BitmapImage x:Key="DefrostIcon" UriSource="Resources\Icons\Indicators\windshield-defrost.png" />
+        <BitmapImage x:Key="TurnLeftIcon" UriSource="Resources\Icons\Indicators\turn-signal-left.png" />
+        <BitmapImage x:Key="TurnRightIcon" UriSource="Resources\Icons\Indicators\turn-signal-right.png" />
+
+        <BitmapImage x:Key="ToggleButton" UriSource="Resources\Buttons\toggle-button.png" />
+        <BitmapImage x:Key="SelectedToggleButton" UriSource="Resources\Buttons\toggle-button-selected.png" />
 
         <Style x:Key="TextStyle" TargetType="{x:Type Label}">
             <Setter Property="FontFamily" Value="Resources\Fonts\Audi Type.ttf" />
@@ -57,26 +58,49 @@
 
         <Style x:Key="BlinkStyle" TargetType="{x:Type Image}">
             <Style.Resources>
-                <Storyboard x:Key="FlashAnimation" >
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" AutoReverse="True" Duration="0:0:0.5" RepeatBehavior="Forever" />
-                </Storyboard> 
+                <Storyboard x:Key="FlashAnimation">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" AutoReverse="True"
+                                     Duration="0:0:0.5" RepeatBehavior="Forever" />
+                </Storyboard>
             </Style.Resources>
 
             <Style.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect Color="#FFD53131" Direction="0" BlurRadius="32" ShadowDepth="0" Opacity="1" />
+                            <DropShadowEffect Color="#FFD53131" Direction="0" BlurRadius="32" ShadowDepth="0"
+                                              Opacity="1" />
                         </Setter.Value>
                     </Setter>
                     <DataTrigger.EnterActions>
                         <BeginStoryboard Name="Flash" Storyboard="{StaticResource FlashAnimation}" />
                     </DataTrigger.EnterActions>
                     <DataTrigger.ExitActions>
-                        <StopStoryboard BeginStoryboardName="Flash"/>
+                        <StopStoryboard BeginStoryboardName="Flash" />
                     </DataTrigger.ExitActions>
                 </DataTrigger>
             </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TableHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TextElement.FontWeight" Value="Bold" />
+            <Setter Property="TextElement.Foreground" Value="White" />
+        </Style>
+        <Style x:Key="TableRowStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style x:Key="TableCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="TextElement.Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF5E0000" />
+                </Trigger>
+            </Style.Triggers>
+
         </Style>
 
     </Application.Resources>

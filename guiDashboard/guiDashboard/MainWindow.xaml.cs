@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.SQLite;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -32,31 +31,9 @@ namespace guiDashboard
         public MainWindow()
         {
             InitializeComponent();
-            FetchSqliteData();
             StartSimulationListener();
         }
-
-
-        private static void FetchSqliteData()
-        {
-            // TODO do something with the data x)
-
-            using (var database = new SQLiteConnection(@"Data Source=Resources\consumption_monitoring.db"))
-            {
-                database.Open();
-                var consumptionForTrackOne =
-                    new SQLiteCommand("SELECT consumption FROM Consumption WHERE trackid=1", database);
-                var reader = consumptionForTrackOne.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    var consumption = float.Parse(reader["consumption"].ToString());
-//                    Console.WriteLine(consumption);
-                }
-                database.Close();
-            }
-        }
-
+        
         private void StartSimulationListener()
         {
             Task.Run(async () =>
@@ -139,6 +116,7 @@ namespace guiDashboard
             OnPropertyChanged(nameof(FullBeam));
             
             WarnSignal = vehicleData.Warnsignal;
+//            Console.WriteLine(WarnSignal);
             OnPropertyChanged(nameof(WarnSignal));
             
             Light = vehicleData.Light;
