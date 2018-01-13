@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,30 +8,17 @@ using System.Windows.Media.Animation;
 
 namespace guiDashboard
 {
-    public sealed partial class MainWindow : INotifyPropertyChanged
+    public sealed partial class MainWindow
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public int Speed { get; private set; }
-        public int SpeedometerNeedleRotation { get; private set; }
-        public string Rpm { get; private set; }
-        public int RpmNeedleRotation { get; private set; }
-        public string Temperature { get; private set; }
-        public string TimeOfDay { get; private set; }
-        public string DrivenDistance { get; private set; }
-        public int FuelDisplayWidth { get; private set; }
-        public bool BlinkLeft { get; private set; }
-        public bool BlinkRight { get; private set; }
-        public bool FullBeam { get; private set; }
-        public bool Light { get; private set; }
-        public bool WarnSignal { get; private set; }
-        public bool Wiper { get; private set; }
-
+        private readonly DataBindings _bindings;
         private bool _receive = true;
+
 
         public MainWindow()
         {
             InitializeComponent();
+            _bindings = DataContext as DataBindings;
+            
             AnimateCurrentSongText();
             StartSimulationListener();
         }
@@ -74,82 +59,57 @@ namespace guiDashboard
             var vehicleData = VehicleData.FromJson(data);
 
             var speed = vehicleData.Speed;
-            Speed = (int) speed;
-            OnPropertyChanged(nameof(Speed));
-
-            SpeedometerNeedleRotation = (int) (speed <= 100
+            _bindings.Speed = (int) speed;
+            _bindings.SpeedometerNeedleRotation = (int) (speed <= 100
                 ? MapValueToRange(speed, 0, 100, -140, 0)
                 : MapValueToRange(speed, 100, 300, 0, 138));
-            OnPropertyChanged(nameof(SpeedometerNeedleRotation));
 
             var rpm = vehicleData.RPM / 1000f;
-            Rpm = $"{rpm:0.0}";
-            OnPropertyChanged(nameof(Rpm));
-
-            RpmNeedleRotation = (int) MapValueToRange(rpm, 0, 8, -126, 128);
-            OnPropertyChanged(nameof(RpmNeedleRotation));
+            _bindings.Rpm = $"{rpm:0.0}";
+            _bindings.RpmNeedleRotation = (int) MapValueToRange(rpm, 0, 8, -126, 128);
 
             var temperature = vehicleData.OutsideTemperature;
-            Temperature = $"{(temperature >= 0f ? "+" : "")}{temperature:0.0}°C";
-            OnPropertyChanged(nameof(Temperature));
+            _bindings.Temperature = $"{(temperature >= 0f ? "+" : "")}{temperature:0.0}°C";
 
             var dayTime = DateTime.Now;
-            TimeOfDay = dayTime.ToShortTimeString();
-            OnPropertyChanged(nameof(TimeOfDay));
+            _bindings.TimeOfDay = dayTime.ToShortTimeString();
 
             var distance = vehicleData.Distance;
-            DrivenDistance = $"{distance:0.0} km";
-            OnPropertyChanged(nameof(DrivenDistance));
+            _bindings.DrivenDistance = $"{distance:0.0} km";
 
             var fuel = vehicleData.Fuel;
-            FuelDisplayWidth = (int) MapValueToRange(fuel, 0f, 1f, 0, 159);
-            OnPropertyChanged(nameof(FuelDisplayWidth));
+            _bindings.FuelDisplayWidth = (int) MapValueToRange(fuel, 0f, 1f, 0, 159);
 
             var blink = vehicleData.Blink;
             switch (blink)
             {
                 case -1:
-                    BlinkLeft = true;
-                    BlinkRight = false;
+                    _bindings.BlinkLeft = true;
+                    _bindings.BlinkRight = false;
                     break;
                 case 1:
-                    BlinkLeft = false;
-                    BlinkRight = true;
+                    _bindings.BlinkLeft = false;
+                    _bindings.BlinkRight = true;
                     break;
                 default:
-                    BlinkLeft = false;
-                    BlinkRight = false;
+                    _bindings.BlinkLeft = false;
+                    _bindings.BlinkRight = false;
                     break;
             }
-            OnPropertyChanged(nameof(BlinkLeft));
-            OnPropertyChanged(nameof(BlinkRight));
 
-            var wiper = vehicleData.WiperLevel;
-            Wiper = wiper != 0;
-            OnPropertyChanged(nameof(Wiper));
-
-            FullBeam = vehicleData.FullBeam;
-            OnPropertyChanged(nameof(FullBeam));
-
-            WarnSignal = vehicleData.Warnsignal;
-//            Console.WriteLine(WarnSignal);
-            OnPropertyChanged(nameof(WarnSignal));
-
-            Light = vehicleData.Light;
-            OnPropertyChanged(nameof(Light));
+            _bindings.Wiper = vehicleData.WiperLevel != 0;
+            _bindings.FullBeam = vehicleData.FullBeam;
+            _bindings.WarnSignal = vehicleData.Warnsignal;
+            _bindings.Light = vehicleData.Light;
         }
 
-        private static float MapValueToRange(float value, float inputStart, float inputEnd, float outputStart,
-            float outputEnd)
+        private static float MapValueToRange(float value,
+            float inputStart, float inputEnd,
+            float outputStart, float outputEnd)
         {
             var inputRange = inputEnd - inputStart;
             var outputRange = outputEnd - outputStart;
             return (value - inputStart) * outputRange / inputRange + outputStart;
-        }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

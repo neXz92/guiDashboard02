@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
              mc:Ignorable="d"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+             DataContext="{StaticResource Bindings}">
 
     <Grid>
         <TabControl Width="564" Height="373" Background="Transparent" BorderBrush="Transparent">

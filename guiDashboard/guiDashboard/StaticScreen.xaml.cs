@@ -1,35 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.SQLite;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
 namespace guiDashboard
 {
-    public sealed partial class StaticScreen : INotifyPropertyChanged
+    public sealed partial class StaticScreen
     {
-        public List<TrackData> Tracks { get; private set; } = new List<TrackData>();
-        public string CurrentSong { get; private set; } = "Irgend ein Song";
-
-        public IEnumerable<SongData> Songs { get; } = new List<SongData>
-        {
-            new SongData("Globus - A Thousand Deaths", new TimeSpan(0, 6, 30)),
-            new SongData("Billy Talent - Red Flag", new TimeSpan(0, 3, 16)),
-            new SongData("Avril Lavigne - Sk8er Boi", new TimeSpan(0, 3, 24)),
-            new SongData("System of A Down - Toxicity", new TimeSpan(0, 3, 39)),
-            new SongData("Within Temptation - Let Us Burn", new TimeSpan(0, 5, 31)),
-            new SongData("Linkin Park - In the End", new TimeSpan(0, 3, 36)),
-            new SongData("Avantasia - Journey to Arcadia", new TimeSpan(0, 7, 12))
-        };
+        private readonly DataBindings _bindings;
 
 
         public StaticScreen()
         {
             InitializeComponent();
+            _bindings = DataContext as DataBindings;
+            
             InitializeTrackList();
-            InitializeSongList();
+            SongList.SelectedIndex = 0;
         }
 
         private void InitializeTrackList()
@@ -53,19 +41,11 @@ namespace guiDashboard
 
                     values.Add(new TrackData(id, start, destination, duration, date));
                 }
-                Tracks = values;
-                OnPropertyChanged(nameof(Tracks));
-
+                _bindings.Tracks = values;
                 sqlite.Close();
             }
             TrackTable.SelectedIndex = 0;
             UpdateConsumptionChart(1);
-        }
-
-        private void InitializeSongList()
-        {
-            //SongList.ItemsSource = Songs;
-            SongList.SelectedIndex = 0;
         }
 
         private void OnTrackSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -79,10 +59,7 @@ namespace guiDashboard
         {
             var list = sender as ListBox;
             if (list?.SelectedItem is SongData song)
-            {
-                CurrentSong = $"{song.Title}";
-                OnPropertyChanged(nameof(CurrentSong));
-            }
+                _bindings.CurrentSong = $"{song.Title}";
         }
 
         private void UpdateConsumptionChart(int trackId)
@@ -109,13 +86,6 @@ namespace guiDashboard
 
                 sqlite.Close();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
