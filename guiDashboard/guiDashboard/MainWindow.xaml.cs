@@ -18,7 +18,10 @@ namespace guiDashboard
         {
             InitializeComponent();
             _bindings = DataContext as DataBindings;
-            
+
+            var second = new SecondWindow();
+            second.Show();
+
             AnimateCurrentSongText();
             StartSimulationListener();
         }
