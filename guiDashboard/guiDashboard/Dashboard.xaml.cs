@@ -140,8 +140,11 @@ namespace guiDashboard
         public void ShutDown()
         {
             var stopMessage = Encoding.UTF8.GetBytes("STOP");
-            _client.Send(stopMessage, stopMessage.Length);
-            _client.Close();
+            using (_client)
+            {
+                _client.Send(stopMessage, stopMessage.Length);
+                _client.Close();
+            }
         }
     }
 }
