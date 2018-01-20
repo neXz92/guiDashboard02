@@ -168,21 +168,23 @@
             <TabItem Header="Settings">
                 <Grid>
                     <Image Source="{StaticResource StaticScreen}" />
-                    <UniformGrid Width="400" Height="200" Rows="6" Columns="2">
-                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Design"
-                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <UniformGrid Width="420" Height="260" Rows="6" Columns="2">
+                        <Label Style="{StaticResource TextStyle}" FontSize="20" Content="Design"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
                         <Grid>
-                            <ComboBox HorizontalAlignment="Left" Width="100" Height="20" SelectedIndex="0">
+                            <ComboBox HorizontalAlignment="Left" Width="120" Height="30" SelectedIndex="0"
+                                      TextElement.FontSize="16">
                                 <ComboBoxItem Content="Design 1" />
                                 <ComboBoxItem Content="Design 2" />
                                 <ComboBoxItem Content="Design 3" />
                             </ComboBox>
                         </Grid>
 
-                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Sprache"
-                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Label Style="{StaticResource TextStyle}" FontSize="20" Content="Sprache"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
                         <Grid>
-                            <ComboBox HorizontalAlignment="Left" Width="100" Height="20" SelectedIndex="0">
+                            <ComboBox HorizontalAlignment="Left" Width="120" Height="30" SelectedIndex="0"
+                                      TextElement.FontSize="16">
                                 <ComboBoxItem Content="Deutsch" />
                                 <ComboBoxItem Content="Englisch" />
                                 <ComboBoxItem Content="Französisch" />
@@ -193,44 +195,56 @@
                             </ComboBox>
                         </Grid>
 
-                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Zeitformat"
-                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Label Style="{StaticResource TextStyle}" FontSize="20" Content="Zeitformat"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
                         <Grid>
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                <RadioButton TextElement.Foreground="White" Content="12 h" />
-                                <RadioButton Margin="10,0,0,0" TextElement.Foreground="White" Content="24 h"
-                                             IsChecked="True" />
+                                <Viewbox Height="20">
+                                    <RadioButton TextElement.Foreground="White" Content="12 h" />
+                                </Viewbox>
+                                <Viewbox Height="20">
+                                    <RadioButton Margin="10,0,0,0" TextElement.Foreground="White" Content="24 h"
+                                                 IsChecked="True" />
+                                </Viewbox>
+
                             </StackPanel>
                         </Grid>
 
-                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Helligkeit"
-                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Label Style="{StaticResource TextStyle}" FontSize="20" Content="Helligkeit"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
+                        <Grid>
+                            <Viewbox Height="30" HorizontalAlignment="Left">
+                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                    <Slider Name="BrightnessSlider" Width="200" Maximum="100" LargeChange="25"
+                                            SmallChange="1" TickFrequency="10" Value="80"
+                                            TextElement.Foreground="White"
+                                            TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
+                                    <Label Style="{StaticResource TextStyle}" FontSize="20"
+                                           Content="{Binding ElementName=BrightnessSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+
+                        <Label Style="{StaticResource TextStyle}" FontSize="20" Content="Temperatur"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
                         <Grid>
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                <Slider Name="BrightnessSlider" Width="150" Maximum="100" LargeChange="25"
-                                        SmallChange="1" TickFrequency="10" Value="80" TextElement.Foreground="White"
-                                        TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
-                                <Label Style="{StaticResource TextStyle}"
-                                       Content="{Binding ElementName=BrightnessSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" />
+                                <Viewbox Height="20">
+                                    <RadioButton TextElement.Foreground="White" Content="°Celsius" IsChecked="True" />
+                                </Viewbox>
+                                <Viewbox Height="20">
+                                    <RadioButton Margin="10,0,0,0" TextElement.Foreground="White" Content="°Fahrenheit" />
+                                </Viewbox>
                             </StackPanel>
                         </Grid>
 
-                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="Temperatur"
-                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Label Style="{StaticResource TextStyle}" FontSize="20" Content="GPS Sync"
+                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" />
                         <Grid>
-                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                <RadioButton TextElement.Foreground="White" Content="°Celsius" IsChecked="True" />
-                                <RadioButton Margin="10,0,0,0" TextElement.Foreground="White" Content="°Fahrenheit" />
-                            </StackPanel>
+                            <Viewbox Height="25" HorizontalAlignment="Left">
+                                <CheckBox IsChecked="True" />
+                            </Viewbox>
                         </Grid>
-
-                        <Label Style="{StaticResource TextStyle}" FontSize="16" Content="GPS Sync"
-                               HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" />
-                        <Grid>
-                            <CheckBox VerticalAlignment="Center" IsChecked="True" />
-                        </Grid>
-
-
                     </UniformGrid>
                 </Grid>
             </TabItem>
