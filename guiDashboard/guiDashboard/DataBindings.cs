@@ -19,9 +19,16 @@ namespace guiDashboard
         public bool BlinkLeft { get; set; }
         public bool BlinkRight { get; set; }
         public bool FullBeam { get; set; }
+        public bool LowBeam { get; set; }
         public bool Light { get; set; }
+        public bool FogLight { get; set; }
         public bool WarnSignal { get; set; }
         public bool Wiper { get; set; }
+        public bool OilSignal { get; set; }
+        public bool BatterySignal { get; set; }
+        public bool BrakeSignal { get; set; }
+        public bool DoorSignal { get; set; }
+        public bool DefrostSignal { get; set; }
         
         public List<TrackData> Tracks { get; set; } = new List<TrackData>();
         public IEnumerable<SongData> Songs { get; } = new List<SongData>

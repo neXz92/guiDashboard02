@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
              xmlns:guiDashboard="clr-namespace:guiDashboard"
-             StartupUri="MainWindow.xaml">
+             Startup="OnStartup" Exit="OnExit" ShutdownMode="OnMainWindowClose">
     <Application.Resources>
         <BitmapImage x:Key="Dashboard" UriSource="Resources\UIElements\dashboard.png" />
         <BitmapImage x:Key="StaticScreen" UriSource="Resources\UIElements\static-screen-background.png" />

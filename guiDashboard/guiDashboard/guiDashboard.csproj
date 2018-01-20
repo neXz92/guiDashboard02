@@ -81,7 +81,7 @@
       <DependentUpon>StaticScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataClasses.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="Dashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -89,8 +89,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SecondWindow.xaml">
